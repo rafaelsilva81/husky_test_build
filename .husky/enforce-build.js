@@ -1,6 +1,8 @@
 const fs = require("fs");
 const { execSync } = require("child_process");
 
+console.log("Enforcing build commit...");
+
 try {
   // Check if package.json is modified compared to the previous commit
   const isPackageJsonModified = execSync(
