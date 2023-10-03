@@ -9,18 +9,6 @@
     "husky": "^8.0.0"
   },
   "scripts": {
-    "prepare": "husky install",
-    "pre-commit-check": "node ./husky/enforce-build.js"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run pre-commit-check"
-    }
-  },
-  "lint-staged": {
-    "package.json": "npm run enforce-build-commit"
-  },
-  "dependencies": {
-    "lint-staged": "^14.0.1"
+    "prepare": "husky install"
   }
 }
