@@ -9,6 +9,7 @@ console.log("process.argv", process.argv);
 const commitMessageFile = process.argv[2];
 const commitMessage = fs.readFileSync(commitMessageFile, "utf8");
 
+console.log("commitMessage", commitMessage);
 // Check if the package.json file was modified
 const isPackageJsonModified = commitMessage.includes("package.json");
 
