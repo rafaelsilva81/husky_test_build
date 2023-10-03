@@ -3,6 +3,9 @@ console.log("Hello from enforce-build.js");
 const fs = require("fs");
 
 // Get the commit message from the command line arguments
+
+console.log("process.argv", process.argv);
+
 const commitMessageFile = process.argv[2];
 const commitMessage = fs.readFileSync(commitMessageFile, "utf8");
 

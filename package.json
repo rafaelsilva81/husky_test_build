@@ -10,6 +10,6 @@
   },
   "scripts": {
     "prepare": "husky install",
-    "enforce-build": "node ./huksy/enforce-build.js"
+    "enforce-build": "node ./.husky/enforce-build.js"
   }
 }

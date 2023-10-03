@@ -5,4 +5,4 @@
 npx --no -- commitlint --edit ${1}
 
 # Check for modifications to package.json
-./check-package-json-commit.js "${1}"
+npm run enforce-build ${1}
