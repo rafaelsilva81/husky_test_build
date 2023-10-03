@@ -1,0 +1,11 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# Check if the commit includes a build file (e.g., package.json)
+if git diff --cached --name-only -- '*.json' | grep -q 'package.json'; then
+  # If package.json is in the commit, demand a "build:" commit
+  npx --no-install commitlint --edit $1
+else
+  # Otherwise, enforce conventional commits without the "build:" condition
+  npx --no-install commitlint --edit $1 --config @commitlint/config-conventional
+fi
