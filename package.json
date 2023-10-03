@@ -1,6 +1,6 @@
 {
   "name": "husky_test_build",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
@@ -9,6 +9,7 @@
     "husky": "^8.0.0"
   },
   "scripts": {
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "enforce-build": "node ./huksy/enforce-build.js"
   }
 }

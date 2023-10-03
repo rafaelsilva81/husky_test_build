@@ -5,7 +5,4 @@
 npx --no -- commitlint --edit ${1}
 
 # Check for modifications to package.json
-if git diff --exit-code --name-only HEAD@{1} package.json >/dev/null 2>&1; then
-  echo "Error: Please use a build commit for package.json changes."
-  exit 1
-fi
+./check-package-json-commit.js "${1}"
