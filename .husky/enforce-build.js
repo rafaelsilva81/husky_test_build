@@ -14,6 +14,7 @@ const packageJsonRegex = /package\.json/;
 const isPackageJsonModified = packageJsonRegex.test(changes);
 
 if (!isPackageJsonModified) {
+  console.log("no build changes found");
   process.exit(0); // Exit with a success code to allow the commit
 } else {
   console.log("found package.json changes");
