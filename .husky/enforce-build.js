@@ -8,17 +8,22 @@ const commitMessageFile = process.argv[2];
 const commitMessage = fs.readFileSync(commitMessageFile, "utf8");
 
 // Check if the package.json file was modified
-const isPackageJsonModified =
-  execSync("git diff --exit-code --name-only HEAD@{1} package.json", {
-    stdio: "ignore",
-  }).toString() !== "";
+const changes = execSync("git diff --cached --name-only").toString();
 
-// Check if the commit message starts with "build:"
-const isValidCommitMessage = commitMessage.startsWith("build:");
+const packageJsonRegex = /package\.json/;
+const isPackageJsonModified = packageJsonRegex.test(changes);
 
-if (isPackageJsonModified && !isValidCommitMessage) {
-  console.error(
-    'Error: When modifying package.json, the commit message must start with "build:"'
-  );
-  process.exit(1); // Exit with an error code to block the commit
+if (!isPackageJsonModified) {
+  process.exit(0); // Exit with a success code to allow the commit
+} else {
+  console.log("found package.json changes");
+  // Check if the commit message starts with "build:"
+  const isValidCommitMessage = commitMessage.startsWith("build:");
+
+  if (!isValidCommitMessage) {
+    console.error(
+      'Error: When modifying package.json, the commit message must start with "build:"'
+    );
+    process.exit(1); // Exit with an error code to block the commit
+  }
 }
