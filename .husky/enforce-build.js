@@ -1,17 +1,17 @@
-console.log("Hello from enforce-build.js");
+console.log("checking for build changes...");
 
 const fs = require("fs");
+const { execSync } = require("child_process");
 
 // Get the commit message from the command line arguments
-
-console.log("process.argv", process.argv);
-
 const commitMessageFile = process.argv[2];
 const commitMessage = fs.readFileSync(commitMessageFile, "utf8");
 
-console.log("commitMessage", commitMessage);
 // Check if the package.json file was modified
-const isPackageJsonModified = commitMessage.includes("package.json");
+const isPackageJsonModified =
+  execSync("git diff --exit-code --name-only HEAD@{1} package.json", {
+    stdio: "ignore",
+  }).toString() !== "";
 
 // Check if the commit message starts with "build:"
 const isValidCommitMessage = commitMessage.startsWith("build:");
