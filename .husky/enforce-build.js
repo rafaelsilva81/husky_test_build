@@ -26,5 +26,8 @@ if (!isPackageJsonModified) {
       'Error: When modifying package.json, the commit message must start with "build:"'
     );
     process.exit(1); // Exit with an error code to block the commit
+  } else {
+    console.log("build changes found and commit message is valid");
+    process.exit(0); // Exit with a success code to allow the commit
   }
 }
