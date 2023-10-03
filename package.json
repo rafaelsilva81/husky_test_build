@@ -9,25 +9,18 @@
     "husky": "^8.0.0"
   },
   "scripts": {
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "pre-commit-check": "node pre-commit-check.js"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint-staged"
+      "pre-commit": "npm run pre-commit-check"
     }
   },
   "lint-staged": {
-    "*.js": [
-      "git add"
-    ],
-    "*.json": [
-      "git add"
-    ],
-    "*.{md,markdown}": [
-      "git add"
-    ],
-    "*": [
-      "npx --no-install commitlint --from=HEAD~1 --to=HEAD"
-    ]
+    "package.json": "npm run enforce-build-commit"
+  },
+  "dependencies": {
+    "lint-staged": "^14.0.1"
   }
 }
